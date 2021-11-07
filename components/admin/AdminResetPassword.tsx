@@ -1,49 +1,34 @@
-import Checkbox from "./Checkbox"
-import Input from "./Input"
+import Checkbox from "../Checkbox"
+import Input from "../Input"
 import Link from "next/link"
 import { EyeIcon, EyeOffIcon } from "@heroicons/react/outline"
 import { useState } from "react"
-import { AdminLoginProps } from "types"
+import { AdminResetPasswordProps } from "types"
 
-const AdminLogin = ({
-  credentials: { password, email },
+const AdminResetPassword = ({
+  password: { newPassword, newPasswordConfirmation },
   handleSubmit,
   handleChange,
-}: AdminLoginProps) => {
+}: AdminResetPasswordProps) => {
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const [passwordInputType, setPasswordInputType] = useState<string>("password")
   return (
     <div>
-      <h1 className="text-sm md:text-lg text-center">
-        Sign in to your account
-      </h1>
+      <h1 className="text-sm md:text-lg text-center">Reset your password</h1>
       <form onSubmit={handleSubmit}>
         <div className="my-10">
           <label htmlFor="email" className="block mb-2">
-            Email
-          </label>
-          <Input
-            type="email"
-            placeholder="Email address"
-            value={email}
-            className="block input w-full"
-            handleChange={handleChange}
-            props={{ name: "email" }}
-          />
-        </div>
-        <div className="my-10">
-          <label htmlFor="email" className="block mb-2">
-            Password
+            New Password
           </label>
           <div className="flex password-input">
             <div className="w-11/12">
               <Input
                 type={passwordInputType}
                 placeholder="Password"
-                value={password}
+                value={newPassword}
                 className="block w-full outline-none px-5 py-3"
                 handleChange={handleChange}
-                props={{ name: "password" }}
+                props={{ name: "newPassword" }}
               />
             </div>
             <div className="w-1/12 flex justify-center">
@@ -67,17 +52,41 @@ const AdminLogin = ({
             </div>
           </div>
         </div>
-        <div className="my-10 flex items-center justify-between">
-          <Checkbox
-            label="Remember me?"
-            value="yes"
-            className="opacity-0 absolute h-8 w-8 cursor-pointer"
-          />
-          <Link href="/admin/auth/forgot-password">
-            <a className="text-xs md:text-base text-blue-700">
-              Forgot Password?
-            </a>
-          </Link>
+        <div className="my-10">
+          <label htmlFor="email" className="block mb-2">
+            Confirm Password
+          </label>
+          <div className="flex password-input">
+            <div className="w-11/12">
+              <Input
+                type={passwordInputType}
+                placeholder="Confirm Password"
+                value={newPasswordConfirmation}
+                className="block w-full outline-none px-5 py-3"
+                handleChange={handleChange}
+                props={{ name: "newPasswordConfirmation" }}
+              />
+            </div>
+            <div className="w-1/12 flex justify-center">
+              {!showPassword ? (
+                <EyeOffIcon
+                  className="h-5 w-5 cursor-pointer"
+                  onClick={() => {
+                    setShowPassword(!showPassword)
+                    setPasswordInputType("text")
+                  }}
+                />
+              ) : (
+                <EyeIcon
+                  className="h-5 w-5 cursor-pointer"
+                  onClick={() => {
+                    setShowPassword(!showPassword)
+                    setPasswordInputType("password")
+                  }}
+                />
+              )}
+            </div>
+          </div>
         </div>
         <div className="my-10">
           <button
@@ -85,7 +94,7 @@ const AdminLogin = ({
             className="w-full border border-yellow-600 bg-yellow-500 text-white 
           text-base md:text-xl py-2 md:py-3 rounded-full transition duration-500 ease-in-out hover:bg-yellow-700"
           >
-            Login
+            Reset
           </button>
         </div>
       </form>
@@ -93,4 +102,4 @@ const AdminLogin = ({
   )
 }
 
-export default AdminLogin
+export default AdminResetPassword

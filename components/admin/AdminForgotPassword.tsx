@@ -1,4 +1,4 @@
-import Input from "./Input"
+import Input from "../Input"
 import Link from "next/link"
 import { AdminForgotPasswordProps } from "types"
 

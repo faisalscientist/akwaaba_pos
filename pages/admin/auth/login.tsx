@@ -1,7 +1,7 @@
 import type { NextPage } from "next"
 import AuthHeader from "components/AuthHeader"
 import AuthFooter from "components/AuthFooter"
-import AdminLogin from "components/AdminLogin"
+import AdminLogin from "components/admin/AdminLogin"
 import { ChangeEvent, useState } from "react"
 
 const Login: NextPage = () => {

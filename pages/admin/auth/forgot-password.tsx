@@ -2,7 +2,7 @@ import type { NextPage } from "next"
 import AuthHeader from "components/AuthHeader"
 import AuthFooter from "components/AuthFooter"
 import { ChangeEvent, useState } from "react"
-import AdminForgotPassword from "components/AdminForgotPassword"
+import AdminForgotPassword from "components/admin/AdminForgotPassword"
 
 const ForgotPassword: NextPage = () => {
   const [email, setEmail] = useState<string>("")
